@@ -1,0 +1,226 @@
+body {
+  width: 100%;
+  padding: 0 30px;
+  max-width: 820px;
+  margin: 0 auto 50px;
+}
+
+h1 {
+  margin: 20px 0 50px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+  padding: 0 0 20px;
+}
+
+h2 {
+  margin: 20px 0 50px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  border-bottom: 1px dotted #eee;
+  padding: 0 0 20px;
+}
+
+ul {
+  /*list-style: decimal;*/
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0 0 30px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px dotted #eee;
+}
+
+li {
+  position: relative;
+  margin: 0 0 5px;
+}
+
+h6 {
+  /*text-align: center;*/
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-top: 1px dotted #eee;
+  cursor: pointer;
+  background: #eee;
+  display: block;
+  padding: 7px 25px;
+  width: 100%;
+  margin: 50px auto 30px;
+}
+
+li a {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #000;
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+p.number {
+  position: absolute;
+  /*left: -30px;*/
+  right: calc(100% + 15px);
+  top: -5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+audio {
+  display: block;
+  width: 100%;
+  margin: 10px 0 20px;
+}
+
+.inner p {
+  border-bottom: 1px dotted #eee;
+  margin-bottom: 20px;
+}
+
+
+/*p.number:after {
+  content: '.';
+}*/
+
+p {
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.definition {
+  font-style: italic;
+  font-size: 13px;
+}
+
+.to-top-form {
+  width: 100px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+button.to-top {
+  -webkit-appearance: none;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+button.btn-close {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 5px 10px;
+  margin: 0;
+  border: 0;
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  position: fixed;
+  top: 50%;
+  display: inline-block;
+  vertical-align: top;
+  left: 40px;
+  margin-top: -190px;
+  cursor: pointer;
+}
+
+.controls {
+  position: fixed;
+  top: 50%;
+  width: 300px;
+  left: 20px;
+  margin-top: -200px;
+}
+
+.control-inner {
+  padding: 50px 20px 20px;
+  background: rgba(239, 239, 239, .5);
+}
+
+.toggle-control {
+  margin: 20px 0;
+}
+
+.toggle-control .form-check {
+  float: left;
+  width: 100%;
+}
+
+.toggle-control .form-check.full {
+  width: 100%;
+}
+
+.dublicate-control {
+  margin: 0 0 20px;
+}
+
+.dublicate-control label {
+  display: block;
+}
+
+.dublicate-control .form-control,
+.dublicate-control .btn-group {
+  float: left;
+}
+
+.dublicate-control .form-control {
+  width: 100px;
+}
+
+.dublicate-control .btn-group {
+  margin-left: 10px;
+}
+
+.form-check-input {
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 840px) {
+  .controls {
+    position: static;
+    width: 100%;
+    margin: 30px 0;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  .definition {
+    font-size: 11px;
+  }
+
+
+  p.number {
+    right: calc(100% + 5px);
+    top: -3px;
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  ul {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .to-top-form {
+    width: 50px;
+  }
+
+  button.to-top {
+    padding: 5px;
+  }
+}
