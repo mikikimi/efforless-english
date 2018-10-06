@@ -185,7 +185,7 @@ button.btn-close {
   margin-top: 6px;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1240px) {
   .controls {
     position: static;
     width: 100%;
@@ -223,4 +223,15 @@ button.btn-close {
   button.to-top {
     padding: 5px;
   }
+
+  img {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+  }
+
 }
+
+
+@media screen and (max-width: 560px) {}
