@@ -49,7 +49,7 @@ h6 {
   display: block;
   padding: 7px 25px;
   width: 100%;
-  margin: 50px auto 30px;
+  margin: 20px auto 10px;
 }
 
 li a {
@@ -75,12 +75,14 @@ p.number {
 audio {
   display: block;
   width: 100%;
-  margin: 10px 0 20px;
+  margin: 5px auto 10px;
 }
 
 .inner p {
   border-bottom: 1px dotted #eee;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  min-height: 90px;
 }
 
 
@@ -101,9 +103,13 @@ p {
 
 .to-top-form {
   width: 100px;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  /* bottom: 20px; */
+  /*position: fixed;*/
+  /*right: 20px;*/
+  /*bottom: 20px;*/
 }
 
 button.to-top {
@@ -160,29 +166,101 @@ button.btn-close {
   width: 100%;
 }
 
-.dublicate-control {
-  margin: 0 0 20px;
+.audio-tracks {
+  display: none;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 20px;
 }
 
-.dublicate-control label {
+.audio {
   display: block;
+  max-width: 100%;
+  width: 100%;
+  margin: 10px auto;
 }
 
-.dublicate-control .form-control,
-.dublicate-control .btn-group {
-  float: left;
-}
-
-.dublicate-control .form-control {
+.num-of-track {
   width: 100px;
 }
 
-.dublicate-control .btn-group {
-  margin-left: 10px;
+/*p.number:after {
+  content: '.';
+}*/
+
+p {
+  margin-bottom: 0;
+  margin-top: 5px;
+  font-size: 16px;
 }
 
-.form-check-input {
-  margin-top: 6px;
+.audio-bar {
+  width: auto;
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 -2px 2px #ccc;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.audio-group {
+  display: inline-block;
+}
+
+audio.isFixedTop {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.85);
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-shadow: 0 3px 2px #ccc;
+  /* border-radius: 30px; */
+  padding: 5px;
+  margin: 0 auto;
+  height: 64px;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.btn-group {
+  margin: 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-media,
+.btn-rate,
+.btn-top {
+  margin: 0 5px;
+  border-radius: 50% !important;
+  padding: 16px 17px;
+}
+
+.btn-rate.active {
+  background: #091d31 !important;
+}
+
+.speed-rate {
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.btn-media .fa-pause {
+  display: none;
+}
+
+.btn-media.playing .fa-pause {
+  display: inline-block;
+}
+
+.btn-media.playing .fa-play {
+  display: none;
 }
 
 @media screen and (max-width: 1240px) {
@@ -216,10 +294,6 @@ button.btn-close {
     font-weight: 400;
   }
 
-  .to-top-form {
-    width: 50px;
-  }
-
   button.to-top {
     padding: 5px;
   }
@@ -234,4 +308,59 @@ button.btn-close {
 }
 
 
-@media screen and (max-width: 560px) {}
+@media screen and (max-width: 1240px) {
+  body {
+    padding: 0 15px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  ul {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  button.btn-close {
+    display: none;
+  }
+
+  .to-top-form {
+    padding: 5px;
+  }
+
+  .audio-heading {
+    padding: 10px;
+    max-width: none;
+    font-size: 22px;
+  }
+
+  .btn-media,
+  .btn-rate,
+  .btn-top {
+    padding: 10px 11px;
+  }
+}
+
+
+@media screen and (max-width: 560px) {
+  .audio-group {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .audio-bar {
+    padding-top: 0
+  }
+
+  .btn-media,
+  .btn-rate,
+  .btn-top {
+    font-size: 14px;
+  }
+}

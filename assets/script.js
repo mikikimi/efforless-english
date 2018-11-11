@@ -7,23 +7,6 @@ $(document).ready(function() {
     $('#toEleForm').toggle();
   });
 
-  $('#btnDublicate').on("click", function() {
-    var num = $('#dublicateSens').val() | 0;
-
-    if (num <= 0) return;
-
-    $.each($('.original'), function() {
-      let i = num;
-      let self = $(this);
-      let newHTML = $('<p data-dublicate>' + self.html() + '</p>');
-      while (i > 0) {
-        newHTML.clone().insertAfter(self);
-        i--;
-      }
-    });
-  });
-
-
 
   $('#btnToggleAllUnit').on('click', function(){
     let val = $(this).data('val');
@@ -41,10 +24,6 @@ $(document).ready(function() {
     $(this).next().toggle();
   });
 
-  $('#btnReset').on('click', function() {
-    $('[data-dublicate]').remove();
-  });
-
   $('#toEleForm').on('submit', function(e) {
     e.preventDefault();
     let num = $('#goToEl').val();
@@ -59,25 +38,129 @@ $(document).ready(function() {
       }, 5);
     }
   });
+});
 
-  $('#hideDef').on("change", function() {
-    if ($(this).is(':checked')) {
-      $.each($('li'), function() {
-        let defEl = $(this).find('[data-def]');
+$(document).ready(function() {
+  let curPlaying = 0;
+  let audioState = 0;
+  let audioArr = $('audio');
+  let curSpeed = 1.0;
+  let loop = false;
 
-        defEl.data('def', defEl.text());
-        defEl.text('');
-      });
+  $.each(audioArr, function(index) {
+    $(this).on('play', function() {
+      let $this = $(this);
+      $this.addClass('isFixedTop');
+      if (curPlaying != -1 && curPlaying != index) {
+        audioArr[curPlaying].pause();
+      }
+      setTimeout(function() {
+        $('#playPauseAudio').addClass('playing');
+        curPlaying = index;
+        audioState = 1;
+        console.log($this);
+        $('#playingFile').text($this.parent().find('span').text());
+      }, 10);
+    });
+    $(this).on('pause', function() {
+      $('#playPauseAudio').removeClass('playing');
+      $(this).removeClass('isFixedTop');
+      audioState = 0;
+    });
+    $(this).on('ended', function() {
+      if (curPlaying >= audioArr.length - 1) return;
+      curPlaying++;
+      audioArr[curPlaying].play();
+    });
+  });
+
+  $('#playPauseAudio').on('click', function() {
+    if (audioState == 0) {
+      if (curPlaying == -1) {
+        curPlaying = 0;
+      }
+      audioArr[curPlaying].play();
     } else {
-      $.each($('li'), function() {
-        let defEl = $(this).find('[data-def]');
-
-        if (defEl.data('def')) {
-          defEl.text(defEl.data('def'));
+      $.each(audioArr, function() {
+        if (!this.paused) {
+          this.pause();
         }
       });
     }
   });
 
+  $('#btnIncrease').on('click', function() {
+    if (curSpeed >= 1.5) return;
+    curSpeed += 0.1;
+    $('#curSpeed').text(curSpeed.toFixed(1));
+    $.each(audioArr, function() {
+      this.playbackRate = curSpeed;
+    });
+  });
+
+  $('#btnDecrease').on('click', function() {
+    if (curSpeed <= 0.6) return;
+    curSpeed -= 0.1;
+    $('#curSpeed').text(curSpeed.toFixed(1));
+    $.each(audioArr, function() {
+      this.playbackRate = curSpeed;
+    });
+  });
+
+  $('#btnLoop').on('click', function() {
+    let $this= $(this);
+    if (!loop) {
+      $this.addClass('active');  
+      loop = true;
+      $.each(audioArr, function() {
+        this.loop = true;
+      });
+    } else {
+      $this.removeClass('active');
+      loop = false;
+      $.each(audioArr, function() {
+        this.loop = false;
+      });
+    }
+  });
+
+  $('#stepBackward').on('click', function() {
+    if (curPlaying <= 0) return;
+
+    if (curPlaying != -1) {
+      audioArr[curPlaying].pause();
+    }
+
+    curPlaying--;
+    audioArr[curPlaying].play();
+  });
+
+  $('#stepForward').on('click', function() {
+    if (curPlaying >= audioArr.length - 1) return;
+
+    if (curPlaying != -1) {
+      audioArr[curPlaying].pause();
+    }
+    curPlaying++;
+    audioArr[curPlaying].play();
+  });
+
+  $('#toTop').on('click', function() {
+    $('html,body').animate({
+      scrollTop: 0
+    }, 100);
+  });
+
+
+  $('#triggerPlay').on('submit', function(e) {
+    e.preventDefault();
+
+    let num = parseInt($('#numOfTrack').val()) - 1;
+    if (num < 0 || num === curPlaying || num > audioArr.length - 1) return;
+
+    audioArr[curPlaying].pause();
+    curPlaying = num;
+    audioArr[curPlaying].play();
+  });
 
 });
