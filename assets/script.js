@@ -51,12 +51,12 @@ $(document).ready(function() {
     $(this).on('play', function() {
       let $this = $(this);
       $this.addClass('isFixedTop');
+      curPlaying = index;
       if (curPlaying != -1 && curPlaying != index) {
         audioArr[curPlaying].pause();
       }
       setTimeout(function() {
         $('#playPauseAudio').addClass('playing');
-        curPlaying = index;
         audioState = 1;
         console.log($this);
         $('#playingFile').text($this.parent().find('span').text());
@@ -64,7 +64,9 @@ $(document).ready(function() {
     });
     $(this).on('pause', function() {
       $('#playPauseAudio').removeClass('playing');
-      $(this).removeClass('isFixedTop');
+      if (curPlaying !== index) {
+        $(this).removeClass('isFixedTop');
+      }
       audioState = 0;
     });
     $(this).on('ended', function() {
