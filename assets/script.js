@@ -74,7 +74,7 @@ $(document).ready(function() {
     $(this).on('ended', function() {
       if (curPlaying >= audioArr.length - 1) return;
       curPlaying++;
-      audioArr[curPlaying].play();
+      audioArr[curPlaying].play(); 
     });
 
     $(this).on('loadedmetadata', function() {
