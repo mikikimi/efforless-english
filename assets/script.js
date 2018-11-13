@@ -2,13 +2,13 @@ $(document).ready(function() {
 
   const orgList = $('li');
 
-  $('#btnCloseControl').on('click', function(){
+  $('#btnCloseControl').on('click', function() {
     $('.control-inner').toggle();
     $('#toEleForm').toggle();
   });
 
 
-  $('#btnToggleAllUnit').on('click', function(){
+  $('#btnToggleAllUnit').on('click', function() {
     let val = $(this).data('val');
 
     if (val == 'hide') {
@@ -54,6 +54,9 @@ $(document).ready(function() {
       }
       let $this = $(this);
       $this.addClass('isFixedTop');
+      if (!$this.parent().hasClass('loaded')) {
+       $this.parent().addClass('loading');
+      }
       curPlaying = index;
       if (curPlaying != -1 && curPlaying != index) {
         audioArr[curPlaying].pause();
@@ -74,23 +77,24 @@ $(document).ready(function() {
     $(this).on('ended', function() {
       if (curPlaying >= audioArr.length - 1) return;
       curPlaying++;
-      audioArr[curPlaying].play(); 
+      audioArr[curPlaying].play();
     });
 
     $(this).on('loadstart loadedmetadata', function() {
-       $(this).parent().addClass('loading');
+      $(this).parent().addClass('loading');
     });
 
     $(this).on('canplay', function() {
-       $(this).parent().removeClass('loading error');
+      $(this).parent().addClass('loaded');
+      $(this).parent().removeClass('loading error');
     });
 
     $(this).on('error', function() {
-       $(this).parent().addClass('error');
+      $(this).parent().addClass('error');
     });
 
     $(this).on('loadeddata', function() {
-       $(this).parent().removeClass('loading');
+      $(this).parent().removeClass('loading');
     });
   });
 
@@ -128,9 +132,9 @@ $(document).ready(function() {
   });
 
   $('#btnLoop').on('click', function() {
-    let $this= $(this);
+    let $this = $(this);
     if (!loop) {
-      $this.addClass('active');  
+      $this.addClass('active');
       loop = true;
       $.each(audioArr, function() {
         this.loop = true;
