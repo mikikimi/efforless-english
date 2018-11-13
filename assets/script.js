@@ -49,6 +49,9 @@ $(document).ready(function() {
 
   $.each(audioArr, function(index) {
     $(this).on('play', function() {
+      if (curPlaying != -1 && curPlaying != index) {
+        audioArr[curPlaying].pause();
+      }
       let $this = $(this);
       $this.addClass('isFixedTop');
       curPlaying = index;
@@ -58,7 +61,6 @@ $(document).ready(function() {
       setTimeout(function() {
         $('#playPauseAudio').addClass('playing');
         audioState = 1;
-        console.log($this);
         $('#playingFile').text($this.parent().find('span').text());
       }, 10);
     });
@@ -73,6 +75,18 @@ $(document).ready(function() {
       if (curPlaying >= audioArr.length - 1) return;
       curPlaying++;
       audioArr[curPlaying].play();
+    });
+
+    $(this).on('loadedmetadata', function() {
+       $(this).parent().addClass('loading');
+    });
+
+    $(this).on('stalled', function() {
+       $(this).parent().addClass('error');
+    });
+
+    $(this).on('loadeddata', function() {
+       $(this).parent().removeClass('loading');
     });
   });
 

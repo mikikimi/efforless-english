@@ -78,6 +78,9 @@ audio {
   margin: 5px auto 10px;
 }
 
+.inner {
+  display: none;
+}
 .inner p {
   border-bottom: 1px dotted #eee;
   margin-bottom: 10px;
@@ -85,6 +88,25 @@ audio {
   min-height: 90px;
 }
 
+.inner p.loading + audio {
+  box-shadow: 0 0 5px green;
+  border-radius: 50px;
+}
+.inner p.loading span:after {
+  content: '(Loading...)';
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.inner p.error span:after {
+  content: '(Error!)';
+  padding-left: 5px;
+  font-style: italic;
+  color: red;
+}
+.inner p.error audio {
+  opacity: .5;
+}
 
 /*p.number:after {
   content: '.';
