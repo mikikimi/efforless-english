@@ -106,7 +106,7 @@ audio {
 }
 .inner p.error audio {
   opacity: .5;
-}
+} 
 
 /*p.number:after {
   content: '.';
