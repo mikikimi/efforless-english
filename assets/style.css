@@ -78,8 +78,13 @@ audio {
   margin: 5px auto 10px;
 }
 
-.inner {
+.inner,
+.inner img {
   display: none;
+}
+.inner.active,
+.inner.active img{
+  display: block;
 }
 .inner p {
   border-bottom: 1px dotted #eee;

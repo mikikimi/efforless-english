@@ -21,7 +21,7 @@ $(document).ready(function() {
   });
 
   $('h6').on('click', function(e) {
-    $(this).next().toggle();
+    $(this).next().toggleClass('active');
   });
 
   $('#toEleForm').on('submit', function(e) {
@@ -77,11 +77,15 @@ $(document).ready(function() {
       audioArr[curPlaying].play(); 
     });
 
-    $(this).on('loadedmetadata', function() {
+    $(this).on('loadstart loadedmetadata', function() {
        $(this).parent().addClass('loading');
     });
 
-    $(this).on('stalled', function() {
+    $(this).on('canplay', function() {
+       $(this).parent().removeClass('loading error');
+    });
+
+    $(this).on('error', function() {
        $(this).parent().addClass('error');
     });
 
