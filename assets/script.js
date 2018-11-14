@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
   const orgList = $('li');
+  let myLazyLoad = new LazyLoad({
+    elements_selector: ".context img"
+  });
 
   $('#btnCloseControl').on('click', function() {
     $('.control-inner').toggle();
