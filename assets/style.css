@@ -374,7 +374,6 @@ audio.isFixedTop {
   }
 }
 
-
 @media screen and (max-width: 560px) {
   .audio-group {
     display: block;
